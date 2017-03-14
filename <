@@ -1,0 +1,30 @@
+from my_sound import *
+from my_signal import *
+import numpy as np
+from sklearn.decomposition import PCA
+import pywt
+
+wav_name = MySound.wav_fullname('oosama', 1, 104)
+bousou = MySound.from_wav(wav_name)
+#bousou.draw()
+
+bousou_signal = MySignal.from_sound(bousou)
+bousou_signal.compute_wavedec()
+bousou_signal.compute_mfcc()
+
+#bousou_signal.draw()
+
+o = MySignal.from_signal(bousou_signal.signal[4000:5000])
+a = MySignal.from_signal(bousou_signal.signal[10500:11500])
+
+fo = o.features(0.005)
+fa = a.features(0.005)
+
+fall = np.append(fo, fa)
+
+print len(fall)
+
+
+#plt.imshow(spec.tolist(), aspect="auto", interpolation='nearest', origin="lower")
+#plt.show()
+

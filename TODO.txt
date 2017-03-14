@@ -1,0 +1,4 @@
+make a helper.py file to
+  get signal
+  print spectogram
+  execute
